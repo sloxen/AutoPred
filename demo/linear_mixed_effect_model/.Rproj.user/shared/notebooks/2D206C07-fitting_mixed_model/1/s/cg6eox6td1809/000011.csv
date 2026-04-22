@@ -1,0 +1,4 @@
+"0","ggplot(augment(lme_dragons), aes(x = wingspan, y = intelligence, colour = scales)) +"
+"0","  facet_wrap(vars(mountain)) +"
+"0","  geom_point() +"
+"0","  geom_line(aes(y = .fitted))"

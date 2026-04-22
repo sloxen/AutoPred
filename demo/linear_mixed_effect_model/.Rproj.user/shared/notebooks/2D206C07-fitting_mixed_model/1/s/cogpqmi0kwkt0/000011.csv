@@ -1,0 +1,6 @@
+"0","ggplot(augment(lme_dragons), aes(x = wingspan, y = intelligence, colour = mountain)) +"
+"0","  geom_point() +  "
+"0","  # plot the mixed model predictions"
+"0","  geom_line(aes(y = .fitted, linetype = scales)) +"
+"0","  # add the global average regression line"
+"0","  geom_smooth(method = ""lm"", se = FALSE, colour = ""black"")"

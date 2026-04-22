@@ -1,0 +1,174 @@
+---
+title: "fitting_mixed_model"
+output: html_document
+date: "2025-10-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align="center", warning=FALSE, message=FALSE)
+library(tidyverse)
+library(magrittr)
+library(gtable)
+library(ggpubr)
+library(plotrix)
+library(gridExtra)
+library(gapminder)
+library(dplyr)
+library(gganimate)
+library("readxl")
+library(MullerPlot)
+library(DataCombine)
+library(ggrepel)
+library(GGally)
+library(kableExtra)
+library(patternplot)
+library(viridis)
+library(hrbrthemes)
+library(ggExtra)
+library(gridExtra)
+library(lattice)
+library(lemon)
+library(cowplot)
+library(BactDating)
+library(ape)
+library(data.table)
+library(BiocManager)
+library(ggtree)
+library(tm)
+library(stopwords)
+library(grid)
+library("devtools")
+library(gdsfmt)
+library(vcfR)
+library(openair)
+library(coda)
+library(bayestestR)
+library(plotly)
+library(igraph)
+library(scales)
+library(tidyverse)
+library(lme4)
+library(broom)
+library(broom.mixed)
+library(patchwork)
+```
+
+```{r, error=TRUE}
+irrigation <- read_csv("data/irrigation.csv")
+```
+
+```{r, error=TRUE}
+ggplot(irrigation, aes(x = irrigation, y = yield, colour = variety)) +
+  geom_point()
+```
+
+```{r, error=TRUE}
+ggplot(irrigation, aes(x = irrigation, y = yield, colour = field)) +
+  geom_point()
+```
+
+```{r, error=TRUE}
+lme_yield <- lmer(yield ~ irrigation*variety + (1|field), data = irrigation)
+
+summary(lme_yield)
+```
+
+```{r, error=TRUE}
+ggplot(augment(lme_yield), aes(x = irrigation, y = yield, colour = variety)) +
+  geom_point(aes(shape = "observed"), size = 3) +
+  geom_point(aes(y = .fitted, shape = "predicted"), size = 3)
+```
+
+```{r, error=TRUE}
+solutions <- read_csv("data/solutions.csv")
+solutions_avg <- solutions %>% 
+  group_by(solvent,solute) %>% 
+  mutate(dissolve_avg=mean(dissolve)) %>% 
+  ungroup() %>% 
+  select(solvent,solute,dissolve_avg) %>% 
+  distinct()
+```
+
+```{r, error=TRUE}
+ggplot(solutions_avg, aes(x = solvent, y = dissolve_avg, colour = solute)) +
+  geom_point()
+```
+
+```{r, error=TRUE}
+ggplot(solutions_avg, aes(x = solute, y = dissolve_avg, colour = solvent)) +
+  geom_point()
+```
+
+```{r, error=TRUE}
+lme_dissolve_avg <- lmer(dissolve_avg ~ solute + (1|solvent), data = solutions_avg)
+summary(lme_dissolve_avg)
+```
+
+```{r, error=TRUE}
+ggplot(augment(lme_dissolve_avg), aes(x = solvent, y = dissolve_avg, colour = solute)) +
+  geom_point(aes(shape = "observed"), size = 3) +
+  geom_point(aes(y = .fitted, shape = "predicted"), size = 3)
+```
+
+
+```{r, error=TRUE}
+dragons <- read_csv("data/dragons.csv")
+```
+
+```{r, error=TRUE}
+ggplot(dragons, aes(x = wingspan, y = intelligence, colour = scales)) +
+  geom_point()
+```
+
+```{r, error=TRUE}
+ggplot(dragons, aes(x = scales, y = intelligence)) +
+  geom_boxplot()
+```
+
+```{r, error=TRUE}
+ggplot(dragons, aes(x = scales, y = intelligence)) +
+  facet_wrap(vars(mountain)) +
+  geom_boxplot()
+```
+
+```{r, error=TRUE}
+ggplot(dragons, aes(x = wingspan, y = intelligence, colour = scales)) +
+  facet_wrap(vars(mountain)) +
+  geom_point()
+```
+
+
+```{r, error=TRUE}
+lme_dragons <- lmer(intelligence ~ wingspan*scales + (1 + wingspan*scales|mountain), 
+                    data=dragons)
+summary(lme_dragons)
+```
+
+```{r, error=TRUE}
+ggplot(augment(lme_dragons), aes(x = wingspan, y = intelligence, colour = scales)) +
+  facet_wrap(vars(mountain)) +
+  geom_point() +
+  geom_line(aes(y = .fitted))
+```
+
+```{r, error=TRUE}
+ggplot(augment(lme_dragons), aes(x = wingspan, y = intelligence, colour = mountain)) +
+  geom_point() +  
+  # plot the mixed model predictions
+  geom_line(aes(y = .fitted, linetype = scales)) +
+  # add the global average regression line
+  geom_smooth(method = "lm", se = FALSE, colour = "black")
+```
+
+```{r, error=TRUE}
+
+```
+
+
+```{r, error=TRUE}
+
+```
+
+```{r, error=TRUE}
+
+```
