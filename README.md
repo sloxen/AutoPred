@@ -5,11 +5,20 @@
 ![Org](https://img.shields.io/badge/Research-Sloxen™-black)
 [![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20WIN%20%7C%20Linux%20%7C%20WSL%20%7C%20macOS-lightgrey)]()
 
-AutoPred is a lightweight predictive modelling layer for small and medium-sized businesses.
+AutoPred is a lightweight predictive modelling product for small and medium-sized businesses.
 
-It transforms raw operational data into clear forecasts and decision-ready insights through simple, explainable models and clean visualisations.
+It turns historical data into forecasts, compares models, and produces decision-ready outputs through simple and explainable workflows.
 
-Find more on [AutoPred website](https://autopred.sloxen.com).
+---
+
+AutoPred focuses on:
+
+- practical forecasting, not complex modelling  
+- clear model comparison and selection  
+- business-friendly visualisations  
+- structured outputs ready for dashboards  
+
+Find more on [AutoPred website](https://autopred.sloxen.com) and [bakery demo](https://github.com/sloxen/AutoPred/blob/main/bakery_demo.md)
 
 ---
 # Contents
@@ -59,6 +68,10 @@ The bakery demo shows:
 
 This demo represents a real use case of AutoPred in action.
 
+![Example](demo/bakery_kaggle/plots/plot_actual_vs_predicted_daily.png)
+
+![Example](demo/bakery_kaggle/plots/plot_actual_vs_predicted_by_period.png)
+
 ---
 
 # Analysis
@@ -81,6 +94,32 @@ They highlight:
 - actual vs predicted trends  
 - model improvement over baseline  
 - product-level prediction accuracy  
+
+---
+
+# Position in Sloxen stack
+
+AutoPred sits alongside other Sloxen tools:
+
+- AutoTrac → data tracking and logging
+- AutoWeave → data integration and preparation  
+- AutoPred → prediction and forecasting  
+- AutoVisuals → automated content generation  
+
+Together, they form a simple pipeline from raw data to decision-ready insights.
+
+---
+
+# What makes it different
+
+AutoPred is designed for usability:
+
+- no black-box modelling focus  
+- baseline-first comparison (dummy model)  
+- transparent model selection  
+- outputs that can be directly used in business dashboards  
+
+The goal is not to build the most complex model, but the most useful one.
 
 ---
 
