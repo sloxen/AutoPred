@@ -1,0 +1,35 @@
+<svg width="256" height="256" viewBox="0 0 512 512" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+  
+  <!-- Hexagon -->
+  <polygon 
+    points="256,43 427,149 427,363 256,469 85,363 85,149"
+    fill="none"
+    stroke="#6BAED6"
+    stroke-width="12"
+  />
+
+  <!-- Actual line -->
+  <polyline 
+    points="107,320 171,277 235,299 299,213"
+    fill="none"
+    stroke="#2C7FB8"
+    stroke-width="12"
+  />
+
+  <!-- Predicted line (dashed) -->
+  <polyline 
+    points="299,213 363,179 405,158"
+    fill="none"
+    stroke="#2C7FB8"
+    stroke-width="12"
+    stroke-dasharray="20,16"
+  />
+
+  <!-- Data points -->
+  <circle cx="107" cy="320" r="10" fill="#2C7FB8"/>
+  <circle cx="171" cy="277" r="10" fill="#2C7FB8"/>
+  <circle cx="235" cy="299" r="10" fill="#2C7FB8"/>
+  <circle cx="299" cy="213" r="10" fill="#2C7FB8"/>
+
+</svg>

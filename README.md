@@ -1,4 +1,7 @@
 # AutoPred
+
+<img src="assets/autopred.svg" align="right" width="180" />
+
 [![Static Badge](https://img.shields.io/badge/Build-Passing-%23a9f378)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]()
 [![Status](https://img.shields.io/badge/Project-Active-brightgreen.svg)]()
