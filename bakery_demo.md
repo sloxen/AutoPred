@@ -98,30 +98,80 @@ The best model is selected based on validation score, the lower RMSE is, the bet
 
 ## Example visualisations
 
-### Sales by item
+The exported prediction files are used to create a small set of [business-friendly plots](https://github.com/sloxen/AutoPred/tree/main/demo/bakery_kaggle/plots).  
 
-```
-Bread      ████████████
-Cake       ███████
-Pastry     █████████
-```
 
-### Sales by time
+These visuals focus on three simple questions:
 
-```
-Morning    █████████████
-Afternoon  ████████
-```
+- Does the model follow the real sales pattern?
+- Which model performs best against the baseline?
+- Which products are predicted more accurately?
 
-### Model comparison
+---
 
-```
-RMSE (lower is better)
+### Model improvement against baseline
 
-Dummy          █████████████
-Linear         ████████
-RandomForest   ████
-```
+![Model improvement against baseline](demo/bakery_kaggle/plots/plot_model_comparison_normalised.png)
+
+This chart compares model performance against the dummy mean baseline.
+
+The dummy mean model is set to zero percent because it simply predicts the average quantity from the training data.  
+A higher percentage means the model explains more variation than the baseline.
+
+Random Forest performs best in this demo.
+
+---
+
+### Actual vs predicted daily sales
+
+![Actual vs predicted daily sales](demo/bakery_kaggle/plots/plot_actual_vs_predicted_daily.png)
+
+This chart compares the total actual quantity sold with the total predicted quantity sold on the test set.
+
+The solid line shows the real sales.  
+The dashed line shows the model prediction.  
+Grey bands highlight weekends, where bakery demand may behave differently.
+
+---
+
+### Actual vs predicted sales by time of day
+
+![Actual vs predicted sales by time of day](demo/bakery_kaggle/plots/plot_actual_vs_predicted_by_period.png)
+
+This chart breaks the prediction down by time of day.
+
+Colour shows the sales period:
+
+- morning
+- afternoon
+- evening
+- night
+
+Line style shows the comparison:
+
+- solid line = actual sales
+- dashed line = predicted sales
+
+This helps show whether the model captures different demand patterns across the day.
+
+---
+
+### Prediction accuracy by product
+
+![Prediction accuracy by product](demo/bakery_kaggle/plots/plot_scatter_by_item.png)
+
+Each point compares actual quantity with predicted quantity for one product group.
+
+The dashed diagonal line represents perfect prediction.  
+Points closer to the line mean better prediction accuracy.
+
+The plot also adds business context:
+
+- colour shows time of day
+- shape shows weekday or weekend
+- point size shows month
+
+This makes it easier to see where the model is reliable and where it may need more data or better features.
 
 ---
 
