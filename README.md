@@ -26,6 +26,8 @@ Find more on [AutoPred website](https://autopred.sloxen.com) and [bakery demo](h
 - [Key Capabilities](#key-capabilities)
 - [Example Demo](#example-demo)
 - [Analysis](#analysis)
+- [Position in Sloxen Stack](#position-in-sloxen-stack)
+- [What Makes It different](#what-makes-it-different)
 - [Roadmap](#Roadmap)
 - [Contribution](#Contribution)
 - [License](#License)
@@ -97,7 +99,7 @@ They highlight:
 
 ---
 
-# Position in Sloxen stack
+# Position in Sloxen Stack
 
 AutoPred sits alongside other Sloxen tools:
 
@@ -110,7 +112,7 @@ Together, they form a simple pipeline from raw data to decision-ready insights.
 
 ---
 
-# What makes it different
+# What Makes It different
 
 AutoPred is designed for usability:
 
