@@ -1,0 +1,405 @@
+<!-- tech.html (updated) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo_small.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoPred: human-guided ETL</title>
+  <meta name="description" content="Human-guided ETL: async threads, merges, and checkpoints for reliable pipelines." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    // NO trailing slash
+    window.AUTOWEAVE_API_BASE = "https://autoweave-backend.onrender.com";
+  </script>
+</head>
+
+<body class="sloths-page">
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo">
+        <a href="index.html" aria-label="AutoPred home">
+          <img class="logo-img" src="assets/autoweave.svg" alt="AutoPred logo" />
+        </a>
+        <span class="logo-text">Auto<span>Weave</span></span>
+      </div>
+
+      <nav class="main-nav">
+        <a class="nav-link" href="index.html" rel="noopener">home</a>
+
+        <details class="nav-dropdown">
+          <summary class="nav-link active" href="page">technology</summary>
+          <div class="nav-dropdown-menu" role="menu" aria-label="AutoPred sections">
+            <a class="nav-dropdown-link" href="tech.html#guided" role="menuitem">guided example</a>
+            <a class="nav-dropdown-link" href="tech.html#workbench" role="menuitem">interactive workbench</a>
+            <a class="nav-dropdown-link" href="tech.html#usecases" role="menuitem">use cases</a>
+          </div>
+        </details>
+
+        <details class="nav-dropdown">
+          <summary class="nav-link" href="page">roadmap</summary>
+          <div class="nav-dropdown-menu" role="menu" aria-label="AutoPred sections">
+            <a class="nav-dropdown-link" href="roadmap.html#autoweave" role="menuitem">AutoPred</a>
+            <a class="nav-dropdown-link" href="roadmap.html#productsuite" role="menuitem">Products suite</a>
+          </div>
+        </details>
+
+        <a class="nav-link" href="https://sloxen.com/contact.html" rel="noopener">contact</a>
+      </nav>
+
+      <button class="nav-toggle" type="button"
+              aria-label="Open menu"
+              aria-controls="mobile-nav"
+              aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav__top">
+          <div class="mobile-nav__brand">Auto<span>Weave</span></div>
+          <button class="mobile-nav__close" type="button" aria-label="Close menu">✕</button>
+        </div>
+
+        <nav class="mobile-nav__menu" aria-label="Mobile navigation">
+          <div class="mobile-nav__cta">
+            <a class="mobile-btn mobile-btn--primary" href="tech.html#workbench">Try workbench</a>
+          </div>
+
+          <a class="mobile-link" href="index.html" rel="noopener">home</a>
+
+          <details class="mobile-acc" open>
+            <summary>technology</summary>
+            <a href="tech.html#guided">Guided example</a>
+            <a href="tech.html#workbench">Interactive workbench</a>
+            <a href="tech.html#usecases">Use cases</a>
+          </details>
+
+          <details class="mobile-acc">
+            <summary>roadmap</summary>
+            <a href="roadmap.html#autoweave">AutoPred</a>
+            <a href="roadmap.html#productsuite">Products suite</a>
+          </details>
+
+          <a class="mobile-link" href="https://sloxen.com/contact.html" rel="noopener">Contact</a>
+
+          <p class="mobile-nav__privacy-note">
+            Static demo site. Backend + accounts will be added later.
+          </p>
+
+          <a class="mobile-link" href="privacy.html">Privacy</a>
+          <a class="mobile-link" href="terms.html">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- GUIDED EXAMPLE -->
+    <section id="guided" class="tab-section">
+      <div class="container">
+        <h1>Guided example</h1>
+        <div class="divider"></div>
+
+        <p>
+          Start here to understand the structure and the “threads → merge → checkpoint” model.
+        </p>
+
+        <h2>Workflow</h2>
+        <div class="aw-card">
+          <div class="contact-form" style="max-width: 100%;">
+            <div class="spacer-lg"></div>
+            <figure class="figure-half zoomable">
+              <img src="assets/technology/merge_diagram.drawio.svg" alt="AutoPred thread merge diagram" loading="lazy" />
+              <div class="hybrid-legend">
+                <span class="legend-pill">Async inputs</span>
+                <span class="legend-pill">Merge points</span>
+                <span class="legend-pill">Checkpoints</span>
+                <span class="legend-pill">Clean outputs</span>
+              </div>
+            </figure>
+
+            <p class="aw-card__desc">
+              Tip: once you see the “clean” baseline, it’s easier to understand where human checkpoints are required:
+              renames, duplicates, ambiguous categories, and edge cases.
+            </p>
+          </div>
+        </div>
+
+        <div class="spacer-lg"></div>
+
+        <h2>Inputs</h2>
+        <div class="aw-card">
+          <p class="aw-card__desc">
+            Try sample AutoTrac exports:
+            <a href="assets/technology/time_sample.csv" download>time csv</a>,
+            <a href="assets/technology/income_sample.csv" download>income csv</a>,
+            <a href="assets/technology/project_sample.csv" download>project csv</a>.
+          </p>
+
+          <div class="contact-form" style="max-width: 100%;">
+            <div class="form-row">
+              <label for="guidedFileInput">Upload a CSV</label>
+              <input id="guidedFileInput" type="file" accept=".csv,text/csv" />
+            </div>
+            <button type="button" id="guidedClearBtn">Clear</button>
+          </div>
+
+          <div class="contact-form" style="max-width: 100%;">
+            <div class="form-row">
+              <label>Preview</label>
+              <textarea id="guidedPreview" readonly placeholder="Your CSV preview will appear here…"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE WORKBENCH -->
+    <section id="workbench" class="tab-section">
+      <div class="container">
+        <h1>Interactive workbench</h1>
+        <div class="divider"></div>
+
+        <p>
+          AutoPred applies structured trims, contextual merge logic, and controlled checkpoints on the backend — returning a clean preview and downloadable output.
+        </p>        
+        
+        <p>
+          Upload your business data after logging in or creating an account — we protect your <a href="https://sloxen.com/privacy" target="_blank">privacy</a>. 
+          Or explore the platform using our sample datasets 
+          (<a href="assets/technology/time_sample.csv" download>time csv</a>,
+          <a href="assets/technology/income_sample.csv" download>income csv</a>,
+          <a href="assets/technology/project_sample.csv" download>project csv</a>) without signing in.
+        </p>
+
+        <div class="aw-workbench">
+          <!-- LEFT PANE -->
+          <section class="aw-pane" aria-label="Build (inputs and pipeline)">
+            <div class="aw-pane__header">
+              <h3 class="aw-pane__title">Build</h3>
+              <p class="aw-pane__subtitle">Inputs, trims and merges preloaded samples or your own files</p>
+            </div>
+
+            <div class="aw-pane__body">
+              <div class="aw-card">
+                <div class="contact-form" style="max-width: 100%;">
+                  <div class="form-row">
+                    <h4 class="aw-card__title">Time</h4>
+                    <input id="entriesFile" type="file" accept=".csv,tsv,text/csv" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="aw-card">
+                <div class="contact-form" style="max-width: 100%;">
+                  <div class="form-row">
+                    <h4 class="aw-card__title">Income</h4>
+                    <input id="incomesFile" type="file" accept=".csv,tsv,text/csv" />
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="aw-card">
+                <div class="contact-form" style="max-width: 100%;">
+                  <div class="form-row">
+                    <h4 class="aw-card__title">Project (optional)</h4>
+                    <input id="projectsFile" type="file" accept=".csv,tsv,text/csv" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="aw-card">
+                <div class="contact-form" style="max-width: 100%;">
+                  <div class="form-row" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+                    <button type="button" id="runMergeBtn">Run merge</button>
+                    <button type="button" id="resetAllBtn">Reset</button>
+                    <a id="downloadBtn" class="nav-link" href="#" download="autoweave_merged.csv" style="display:none;">
+                      Download merged CSV
+                    </a>
+                  </div>
+                  <div class="form-row">
+                    <textarea id="statusBox" readonly placeholder="Status will appear here…"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT PANE -->
+          <section class="aw-pane" aria-label="See (preview and visualisation)">
+            <div class="aw-pane__header">
+              <h3 class="aw-pane__title">See</h3>
+              <p class="aw-pane__subtitle">Preview, stats, and visualisations</p>
+            </div>
+
+            <div class="aw-pane__body">
+              <div class="aw-card">
+                <h4 class="aw-card__title">Preview</h4>
+                <div class="contact-form" style="max-width: 100%;">
+                  <div class="form-row">
+                    <textarea id="previewMerged" readonly placeholder="Merged preview will appear here…"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="aw-card">
+                <h4 class="aw-card__title">Quick stats</h4>
+                <div id="statsMerged" aria-label="Quick stats output" style="width:100%; min-height:120px; border:1px solid rgba(15,31,23,0.10); border-radius:14px; padding:12px; background:rgba(255,255,255,0.55); overflow:auto;">
+  <div style="color: rgba(15,31,23,0.55); font-size:0.95rem;">Stats will appear here…</div>
+</div>
+              </div>
+
+              <div class="aw-card">
+                <h4 class="aw-card__title">Visualisations</h4>
+
+                <div class="contact-form" style="max-width: 100%;">
+                  <!-- Controls (no new CSS: inline only) -->
+                  <div class="form-row" style="display:flex; flex-direction:column; gap:0.75rem; align-items:stretch;">
+
+                    <!-- DATE RANGE -->
+                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+                      <div style="min-width:110px; font-size:0.78rem; letter-spacing:0.06em; font-weight:800; color: rgba(15,31,23,0.55); text-transform:uppercase;">Range</div>
+                      <div id="owRangePills" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+
+                        <button type="button" id="owRange14">14 days</button>
+                        <button type="button" id="owRange30">30 days</button>
+                        <button type="button" id="owRange90">90 days</button>
+                        <button type="button" id="owRangeAll">All</button>
+                        <button type="button" id="owRangeCustom">Custom</button>
+                      </div>
+                      <div id="owRangeCustomInputs" style="display:none; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+                        <input id="owFromDate" type="date" />
+                        <span style="color: rgba(15,31,23,0.55);">to</span>
+                        <input id="owToDate" type="date" />
+                        <button type="button" id="owApplyCustom">Apply</button>
+                      </div>
+                    </div>
+
+                    <!-- GROUP -->
+                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+                      <div style="min-width:110px; font-size:0.78rem; letter-spacing:0.06em; font-weight:800; color: rgba(15,31,23,0.55); text-transform:uppercase;">Group</div>
+                      <div id="owGroupPills" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                        <button type="button" id="owGroupDay">Day</button>
+                        <button type="button" id="owGroupWeek">Week</button>
+                        <button type="button" id="owGroupMonth">Month</button>
+                        <button type="button" id="owGroupYear">Year</button>
+                      </div>
+
+                      <!-- keep existing select for backward-compat; hidden -->
+                      <label for="groupBySel" style="margin:0; position:absolute; left:-9999px;">Group by</label>
+                      <select id="groupBySel" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;">
+                        <option value="day">Day</option>
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                        <option value="year">Year</option>
+                      </select>
+                    </div>
+
+                    <!-- MODE + EXPORT -->
+                    <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; justify-content:space-between;">
+                      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+                        <div style="min-width:110px; font-size:0.78rem; letter-spacing:0.06em; font-weight:800; color: rgba(15,31,23,0.55); text-transform:uppercase;">Mode</div>
+                        <div id="owModePills" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                          <button type="button" id="owModeCumulative">Cumulative</button>
+                          <button type="button" id="owExportPng">Export PNG</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div id="visDuration"></div>
+                <div class="spacer-lg"></div>
+                <div id="visIncome"></div>
+                <div class="spacer-lg"></div>
+                <div id="visRatio"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section id="usecases" class="tab-section">
+      <div class="container">
+        <h1>Use cases</h1>
+        <div class="divider"></div>
+
+        <div class="about-quote">
+          <p class="quote-lead">Correctness depends on context.</p>
+          <p class="quote-body">AutoPred makes that context structured, transparent, and repeatable.</p>
+        </div>
+
+        <div class="spacer-xl"></div>
+
+        <p>
+          Example workflows include POS exports with bank statements, operational logs, CRM extracts, supplier feeds,
+          and any data process where edge cases require contextual resolution with documented rationale.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer injection -->
+    <div id="site-footer"></div>
+
+    <script>
+      fetch("footer.html")
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("site-footer").innerHTML = html;
+          const yearEl = document.getElementById("year");
+          if (yearEl) yearEl.textContent = new Date().getFullYear();
+        });
+    </script>
+
+    <!-- Mobile nav script -->
+    <script>
+      const toggle = document.querySelector(".nav-toggle");
+      const mobileNav = document.getElementById("mobile-nav");
+      const closeBtn = document.querySelector(".mobile-nav__close");
+
+      function openNav(){
+        mobileNav.classList.add("is-open");
+        mobileNav.setAttribute("aria-hidden", "false");
+        toggle?.setAttribute("aria-expanded", "true");
+        document.body.classList.add("nav-open");
+      }
+
+      function closeNav(){
+        mobileNav.classList.remove("is-open");
+        mobileNav.setAttribute("aria-hidden", "true");
+        toggle?.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("nav-open");
+      }
+
+      toggle?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openNav();
+      });
+
+      closeBtn?.addEventListener("click", closeNav);
+      mobileNav?.querySelectorAll("a").forEach(a => a.addEventListener("click", closeNav));
+
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") closeNav();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!mobileNav.classList.contains("is-open")) return;
+        const target = e.target;
+        if (!(target instanceof Node)) return;
+        const clickedInsidePanel = mobileNav.contains(target);
+        const clickedToggle = toggle && toggle.contains(target);
+        if (!clickedInsidePanel && !clickedToggle) closeNav();
+      });
+    </script>
+
+    <script src="./script.js"></script>
+  </main>
+</body>
+</html>

@@ -107,7 +107,7 @@ They highlight:
 AutoPred sits alongside other Sloxen tools:
 
 - AutoTrac → data tracking and logging
-- AutoWeave → data integration and preparation  
+- AutoPred → data integration and preparation  
 - AutoPred → prediction and forecasting  
 - AutoVisuals → automated content generation  
 
