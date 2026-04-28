@@ -4,9 +4,8 @@
   <!-- Hexagon -->
   <polygon 
     points="256,43 427,149 427,363 256,469 85,363 85,149"
-    fill="none"
-    stroke="#6BAED6"
-    stroke-width="12"
+    fill="none" stroke="#7DD3FC" stroke-width="16"
+    stroke-linecap="round" stroke-linejoin="round"
   />
 
   <!-- Actual line -->
