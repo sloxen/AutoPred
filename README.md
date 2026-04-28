@@ -5,7 +5,7 @@
 ![Org](https://img.shields.io/badge/Research-Sloxen™-black)
 [![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20WIN%20%7C%20Linux%20%7C%20WSL%20%7C%20macOS-lightgrey)]()
 
-AutoPred is a lightweight predictive modelling product for small and medium-sized businesses.
+AutoPred is a lightweight predictive modelling web application for small and medium-sized businesses.
 
 It turns historical data into forecasts, compares models, and produces decision-ready outputs through simple and explainable workflows.
 
