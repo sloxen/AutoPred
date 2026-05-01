@@ -851,6 +851,34 @@ nav a.active{
   text-decoration: none !important;
 }
 
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(15,31,23,0.15);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(15,31,23,0.85);
+
+  cursor: pointer;
+  display: none;
+
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+#backToTop:hover {
+  background: rgba(15,31,23,0.06);
+  border-color: rgba(15,31,23,0.25);
+  transform: translateY(-2px);
+}
 
 /* =========================================================
    17) Small helpers
